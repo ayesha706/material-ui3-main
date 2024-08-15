@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import { apiSlice } from "./redux/userSlice";
+import {  userSlice } from "./redux/userSlice";
 
 
 export const store = configureStore({
   reducer: {
-      [apiSlice.reducerPath]: apiSlice.reducer,
+      [userSlice.reducerPath]: userSlice.reducer,
   },
-  middleware: (gDM) => gDM().concat( apiSlice.middleware),
+  middleware: (gDM) => gDM().concat( userSlice.middleware),
 })

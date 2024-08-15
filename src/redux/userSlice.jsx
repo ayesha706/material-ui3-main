@@ -1,19 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
-export const apiSlice = createApi({
+export const userSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080/api",
-    // prepareHeaders: (headers, { getState }) => {
-    //   const token = localStorage.getItem('token') || '';
-    //   // console.log(token);
-    
-    //   if (token) {
-    //     headers.set('Authorization', `${token}`);
-    //   }
-    //   return headers;
-    // },
   }),
 
   endpoints: (builder) => ({
@@ -24,9 +14,18 @@ export const apiSlice = createApi({
         body: info,
       })
     }),
+    registerUser: builder.mutation({
+      query: (user) => ({
+        url: '/signup',
+        method: 'POST',
+        body: user,
+      })
+    }),
+
   }),
 });
 
 export const {
   useLoginUserMutation,
-} = apiSlice;
+  useRegisterUserMutation,
+} = userSlice;
